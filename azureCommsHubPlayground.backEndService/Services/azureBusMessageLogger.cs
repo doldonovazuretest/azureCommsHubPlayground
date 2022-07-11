@@ -1,6 +1,6 @@
 ﻿using azureCommsHubPlayground.persistance.unitsOfWork;
 
-namespace ipAddressRequestProcessor.Services
+namespace azureCommsHubPlayground.backEndService.Services
 {
     public class azureBusMessageLogger : IAzureBusMessageLogger, IDisposable
     {
@@ -12,7 +12,7 @@ namespace ipAddressRequestProcessor.Services
         public async Task Log(string processorGuid, string messageGuid, DateTime? enqueued)
         {
             _unit.azureBusMessageEntry.Insert(new azureCommsHubPlayground.persistance.pocoEntities.azureBusMessageEntry()
-            { 
+            {
                 guid = messageGuid,
                 processorGuid = processorGuid,
                 enqueued = enqueued,

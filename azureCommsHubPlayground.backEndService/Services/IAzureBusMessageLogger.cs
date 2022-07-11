@@ -1,4 +1,4 @@
-﻿namespace ipAddressRequestProcessor.Services
+﻿namespace azureCommsHubPlayground.backEndService.Services
 {
     public interface IAzureBusMessageLogger : IDisposable
     {

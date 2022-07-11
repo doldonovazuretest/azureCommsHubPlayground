@@ -1,6 +1,6 @@
 ﻿using Azure.Messaging.ServiceBus;
 
-namespace ipAddressRequestProcessor.Services
+namespace azureCommsHubPlayground.backEndService.Services
 {
     public interface IAzureMessagePayLoadProcessor
     {

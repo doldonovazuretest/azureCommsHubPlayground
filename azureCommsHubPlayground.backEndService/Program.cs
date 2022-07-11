@@ -1,4 +1,4 @@
-namespace ipAddressRequestProcessor
+namespace azureCommsHubPlayground.backEndService
 {
     public class Program
     {

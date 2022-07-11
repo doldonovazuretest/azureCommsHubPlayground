@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ipAddressRequestProcessor.Services;
-using ipAddressRequestProcessor.Models;
+using azureCommsHubPlayground.backEndService.Services;
+using azureCommsHubPlayground.backEndService.Models;
 
-namespace ipAddressRequestProcessor.Controllers
+namespace azureCommsHubPlayground.backEndService.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ipAddressController : baseController
     {
         IIpAddressLookUpService _ipLookUpService;

@@ -1,14 +1,14 @@
-﻿using ipAddressRequestProcessor.Models;
+﻿using azureCommsHubPlayground.backEndService.Models;
 using System.Net;
 using System.Text.Json.Nodes;
 
-namespace ipAddressRequestProcessor.Services
+namespace azureCommsHubPlayground.backEndService.Services
 {
     public class ipAddressLookUpService : IIpAddressLookUpService
     {
         public async Task<ipAddress> check(string ipAddressData)
         {
-            if(IPAddress.TryParse(ipAddressData, out IPAddress? _ipAddress))
+            if (IPAddress.TryParse(ipAddressData, out IPAddress? _ipAddress))
             {
                 return await pullAndParse(ipAddressData);
             }

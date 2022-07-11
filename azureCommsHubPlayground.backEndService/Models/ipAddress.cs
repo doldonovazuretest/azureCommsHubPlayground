@@ -1,4 +1,4 @@
-﻿namespace ipAddressRequestProcessor.Models
+﻿namespace azureCommsHubPlayground.backEndService.Models
 {
     public class ipAddress
     {

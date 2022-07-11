@@ -1,6 +1,6 @@
-﻿using ipAddressRequestProcessor.Models;
+﻿using azureCommsHubPlayground.backEndService.Models;
 
-namespace ipAddressRequestProcessor.Services
+namespace azureCommsHubPlayground.backEndService.Services
 {
     public interface IIpAddressLookUpService
     {

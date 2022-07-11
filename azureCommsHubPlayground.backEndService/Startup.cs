@@ -1,10 +1,10 @@
 ﻿using azureCommsHubPlayground.azureHubCommService;
 using azureCommsHubPlayground.persistance.database;
 using azureCommsHubPlayground.persistance.unitsOfWork;
-using ipAddressRequestProcessor.Services;
+using azureCommsHubPlayground.backEndService.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace ipAddressRequestProcessor
+namespace azureCommsHubPlayground.backEndService
 {
     public class Startup
     {
@@ -26,7 +26,7 @@ namespace ipAddressRequestProcessor
                 options.UseSqlServer(connectionString));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddControllers();            
+            services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
@@ -41,7 +41,7 @@ namespace ipAddressRequestProcessor
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {          
+        {
             app.UseSwagger();
             app.UseSwaggerUI();
             app.UseHttpsRedirection();

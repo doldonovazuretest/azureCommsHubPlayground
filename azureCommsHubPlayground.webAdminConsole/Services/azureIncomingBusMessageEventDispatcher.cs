@@ -19,6 +19,7 @@ namespace azureCommsHubPlayground.webAdminConsole.Services
         public async Task processMessage(ProcessMessageEventArgs args)
         {
             OnMessageReceived(new azureBusMessageEventArgs() { payLoad = args.Message.Body.ToString() });
+            await args.CompleteMessageAsync(args.Message).ConfigureAwait(false);
         }
 
         public void setGuid(string guid)
