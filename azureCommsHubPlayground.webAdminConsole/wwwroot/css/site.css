@@ -72,3 +72,7 @@ a, .btn-link {
 .request-status-alert-hidden {
     visibility: hidden;
 }
+
+.text-small {
+    font-size: 12px;
+}

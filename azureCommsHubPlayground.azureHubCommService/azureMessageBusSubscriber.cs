@@ -17,7 +17,6 @@ namespace azureCommsHubPlayground.azureHubCommService
             _client = new ServiceBusClient(_appSettings.Value.subscriberConnectionString);
         }
 
-
         public string guid => _guid.ToString();
 
         public async Task closeQueueAsync()

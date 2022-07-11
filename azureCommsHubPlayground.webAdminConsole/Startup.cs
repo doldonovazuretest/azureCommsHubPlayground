@@ -31,6 +31,9 @@ namespace azureCommsHubPlayground.webAdminConsole
             services.AddScoped<ISessionState, sessionState>();
             services.AddScoped<IAzureMessageBusDispatcher, azureMessageBusDispatcher>();
             services.AddScoped<IIpAddressCheckRequestHandlerService, ipAddressCheckRequestHandlerService>();
+
+            services.AddSingleton<IAzureIncomingBusMessageEventDispatcher, azureIncomingBusMessageEventDispatcher>();
+            services.AddSingleton<IAzureMessageBusSubscriber, azureMessageBusSubscriber>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -46,6 +49,15 @@ namespace azureCommsHubPlayground.webAdminConsole
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            var _iServiceProfider = app.ApplicationServices;
+
+            var _incomingMessageDispatcher = _iServiceProfider.GetService<IAzureIncomingBusMessageEventDispatcher>();
+
+            _iServiceProfider.GetService<IAzureMessageBusSubscriber>()
+                .register(_incomingMessageDispatcher.processMessage, _incomingMessageDispatcher.processError, _incomingMessageDispatcher.setGuid)
+                .GetAwaiter()
+                .GetResult();
         }
     }
 }
