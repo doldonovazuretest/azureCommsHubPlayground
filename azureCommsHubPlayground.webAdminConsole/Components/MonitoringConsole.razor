@@ -56,17 +56,15 @@
     <div class="col-md-8">
           <table class="table">
                       <thead>
-                          <tr>
-                             <th>guid</th>
-                              <th>message</th>
+                          <tr>                          
+                              <th>processed messages</th>
                           </tr>
                       </thead>
                       <tbody>
                           @foreach(var _message in incomingMessages)
                         {
                             <tr class="text-small">
-                                <td>@_message.guid</td>
-                                 <td>@_message.message</td>
+                               <td>@_message.message</td>
                             </tr>
                         }
                     </tbody>
@@ -148,17 +146,20 @@
 
     void logRequestToList(string _ip)
     {    
+        if(requests.Count > 10) requests.RemoveAt(0);       
         requests.Add(new requestDispatchLogHelper() { ip = _ip, time = DateTime.Now });
     }
 
     void handle_incoming_message(object sender, azureBusMessageEventArgs e)
     {    
+        if(incomingMessages.Count > 10) incomingMessages.RemoveAt(0);  
         incomingMessages.Add(new incomingMesssageLogItemHelper() { message = e.payLoad});
         InvokeAsync(StateHasChanged);  
     }
 
     void handle_error(object sender, azureBusMessageEventArgs e)
-    {        
+    {       
+        if(errors.Count > 10) errors.RemoveAt(0);  
         errors.Add(e.payLoad);
         InvokeAsync(StateHasChanged);  
     }

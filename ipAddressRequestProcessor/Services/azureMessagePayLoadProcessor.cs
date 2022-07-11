@@ -27,7 +27,7 @@ namespace ipAddressRequestProcessor.Services
             IPAddress _ip = new IPAddress(args.Message.Body.ToArray());
 
             await _reportDispatcher
-                .sendMessage($"{messageCount} - {args.Message.MessageId} for {_ip.ToString()} at {DateTime.Now}")
+                .sendMessage($"{messageCount} - {args.Message.MessageId} processed by {guid} for {_ip.ToString()} at {DateTime.Now}")
                 .ConfigureAwait(false);
 
             await _logger.Log(guid, args.Message.MessageId, args.Message.EnqueuedTime.UtcDateTime).ConfigureAwait(false);
