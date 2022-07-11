@@ -103,6 +103,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        await base.OnInitializedAsync();
         azureBusMessageDispatcher.messageReceived += handle_incoming_message;
     }
 
