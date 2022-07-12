@@ -3,6 +3,9 @@ using Microsoft.Extensions.Options;
 
 namespace azureCommsHubPlayground.azureHubCommService
 {
+    /// <summary>
+    /// implementaton of Azure Message Hub Message Subscriber - will sign-up to receive messages
+    /// </summary>   
     public class azureMessageBusSubscriber : IAzureMessageBusSubscriber
     {
         private readonly IOptions<azureMessageBusSettings> _appSettings;
@@ -17,6 +20,7 @@ namespace azureCommsHubPlayground.azureHubCommService
             _client = new ServiceBusClient(_appSettings.Value.subscriberConnectionString);
         }
 
+        // this will be used in communication to identify message processor (useful when multiple instances are runnging).
         public string guid => _guid.ToString();
 
         public async Task closeQueueAsync()

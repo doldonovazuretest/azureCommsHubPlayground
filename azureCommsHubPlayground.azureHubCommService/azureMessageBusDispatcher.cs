@@ -3,8 +3,13 @@ using Microsoft.Extensions.Options;
 
 namespace azureCommsHubPlayground.azureHubCommService
 {
+    /// <summary>
+    /// implementaton of Azure Message Hub Message Dispatcher - sending messages
+    /// </summary>   
     public class azureMessageBusDispatcher : IAzureMessageBusDispatcher
     {
+        // reference to options of type providing mappings with applicaiton settings
+        // will be used in .net core web api and web apps by IServiceCollection.Configure<azureMessageBusSettings> method
         private readonly IOptions<azureMessageBusSettings> _appSettings;
         // the client that owns the connection and can be used to create senders and receivers
         static ServiceBusClient? client;

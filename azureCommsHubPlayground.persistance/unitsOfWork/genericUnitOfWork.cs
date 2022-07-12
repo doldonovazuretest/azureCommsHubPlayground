@@ -5,6 +5,10 @@ using azureCommsHubPlayground.persistance.repositories;
 
 namespace azureCommsHubPlayground.persistance.unitsOfWork
 {
+    /// <summary>
+    /// entry point abstraction type that encapsulates database CRUD operations 
+    /// </summary>
+    /// <typeparam name="TPocoEntity">database entity (table)</typeparam>
     public class genericUnitOfWork<TPocoEntity> : IGenericUnitOfWork<TPocoEntity>, IDisposable where TPocoEntity : class, IPocoEntity
     {
         bool _root;

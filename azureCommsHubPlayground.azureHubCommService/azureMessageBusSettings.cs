@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace azureCommsHubPlayground.azureHubCommService
 {
+    // type providing mappings with applicaiton settings to be used by IServiceCollection.Configure<azureMessageBusSettings> method
     public class azureMessageBusSettings
     {
         public string? dispatcherConnectionString { get; set; }

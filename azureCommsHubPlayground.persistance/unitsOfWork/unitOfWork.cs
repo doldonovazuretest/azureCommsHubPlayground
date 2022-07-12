@@ -6,6 +6,7 @@ using azureCommsHubPlayground.persistance.pocoEntities;
 
 namespace azureCommsHubPlayground.persistance.unitsOfWork
 {
+    // overall non-generic implementation of database access - i used it for sigleton instances to be consumed by long-running backend microservices
     public class unitOfWork : IDisposable
     {
         bool _root;

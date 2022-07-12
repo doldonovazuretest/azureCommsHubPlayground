@@ -19,6 +19,7 @@ namespace azureCommsHubPlayground.backEndService
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // map part of the appsettings.json related to Azure Hub Message Queue to be consumed as dependency by IAzureMessageBusSubscriber and IAzureMessageBusDispatcher
             services.Configure<azureMessageBusSettings>(Configuration.GetSection("azureMessageBusSettings"));
 
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
@@ -30,13 +31,22 @@ namespace azureCommsHubPlayground.backEndService
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
+            // i know this is a hard dependency - i might think about refactoring it later 
+            // this is used ultimately by IAzureBusMessageLogger to persist Azure Hub Messages received and processed by the backend service IAzureMessageBusSubscriber
             services.AddSingleton(new unitOfWork(connectionString));
 
             services.AddTransient<IIpAddressLookUpService, ipAddressLookUpService>();
 
+            // service used to persist info on processed messaged to the underlying database
             services.AddSingleton<IAzureBusMessageLogger, azureBusMessageLogger>();
+
+            // service used to report processed messages to the report Azure Hub Message Queue
             services.AddSingleton<IAzureMessageBusDispatcher, azureMessageBusDispatcher>();
+
+            // service subscribed to handle incoming messages - will provide callback to IAzureMessageBusSubscriber
             services.AddSingleton<IAzureMessagePayLoadProcessor, azureMessagePayLoadProcessor>();
+
+            // Azure Hub Message Queue listener service 
             services.AddSingleton<IAzureMessageBusSubscriber, azureMessageBusSubscriber>();
         }
 

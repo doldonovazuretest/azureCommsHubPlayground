@@ -8,6 +8,10 @@ using azureCommsHubPlayground.persistance.interfaces;
 
 namespace azureCommsHubPlayground.persistance.repositories
 {
+    /// <summary>
+    /// database entity repository implementing CRUD operations
+    /// </summary>
+    /// <typeparam name="TEntity">database entity (table)</typeparam>
     public class entityRepository<TEntity> : IPocoRepository<TEntity> where TEntity : class, IPocoEntity
     {
         internal dbContext context;
